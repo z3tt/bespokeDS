@@ -6,7 +6,7 @@ date: "`r Sys.Date()`"
 output:
   xaringan::moon_reader:
     seal: false
-    css: ["./css/physalia-fonts.css", "./css/custom.css", "./css/kunoichi-blank.css"]
+    css: ["./css/fonts.css", "./css/custom.css", "./css/kunoichi-blank.css"]
     lib_dir: libs
     nature:
       highlightStyle: github
