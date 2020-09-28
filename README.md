@@ -1,4 +1,4 @@
-## Source Materials for the bespokeDS session on Sep 28<sup>th</sup> 2020 by Dr. Cédric Scherer
+## Source Materials for the bespokeDS Session on Sep 28<sup>th</sup> 2020
 
 ### **Presentation**
 
