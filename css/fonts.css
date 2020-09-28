@@ -1,7 +1,10 @@
-@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700,400italic);
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700,400italic,700italic);
 @import url(https://fonts.googleapis.com/css?family=Oswald:400,700,400italic);
 @import url(https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700);
-@import url(https://fonts.googleapis.com/css?family=Merriweather:400,700);
+@import url(https://fonts.googleapis.com/css?family=Playfair+Display:400,700);
+@import url(https://fonts.googleapis.com/css?family=Bebas+Neue:400,700);
+@import url(https://fonts.googleapis.com/css?family=Bitter+Neue:400,700,400italic);
+@import url(https://fonts.googleapis.com/css?family=Merriweather:400,700,400italic);
 @import url(https://fonts.googleapis.com/css?family=Poppins:400,700);
 
 body { font-family: 'Oswald', 'Palatino Linotype', 'Book Antiqua', Palatino, 'Microsoft YaHei', 'Songti SC', serif; }
