@@ -193,14 +193,14 @@ background-size: contain
 # <p style='text-align:center;'><b>What Makes It a<br><span style='color:#D1AF07;'>Bad Data Visualization</span></b></p>
 
 <p style='font-size:28pt;margin-left:250px;line-height:2.3;color:grey;'>
-<b style='color:#D1AF07;'>&rarr;&nbsp;&nbsp;aesthetic problems</b>&nbsp;&nbsp;(bad design)<br>
-<b style='color:#D1AF07;'>&rarr;&nbsp;&nbsp;substantive problems</b>&nbsp;&nbsp;(bad data)<br>
-<b style='color:#D1AF07;'>&rarr;&nbsp;&nbsp;perceptual problems</b>&nbsp;&nbsp;(bad perception)
+<b style='color:#D1AF07;'>&rarr;&nbsp;&nbsp;Aesthetic problems</b>&nbsp;&nbsp;(bad design)<br>
+<b style='color:#D1AF07;'>&rarr;&nbsp;&nbsp;Substantive problems</b>&nbsp;&nbsp;(bad data)<br>
+<b style='color:#D1AF07;'>&rarr;&nbsp;&nbsp;Perceptual problems</b>&nbsp;&nbsp;(bad perception)
 </p>
 
 ---
 
-# <p style='text-align:center;'><b>How to Create an Eye for<br><span style='color:#28a87d;'>Good Data Visualization</span></b></p>
+# <p style='text-align:center;'><b>What Makes It a<br><span style='color:#28a87d;'>Good Data Visualization</span></b></p>
 
 <p style='font-size:28pt;margin-left:310px;line-height:2.3;color:grey;'>
 <b style='color:#28a87d;'>&rarr;&nbsp;&nbsp;Information</b>&nbsp;&nbsp;(Integrity)
@@ -217,7 +217,7 @@ background-size: cover
 class: inverse, center, middle
 
 # <b style='font-size:100pt;color:#ebc500;font-family:bebas neue;'>Information</span></b><br>
-# <i style='font-size:30pt;font-family:bitter;'>Understand your data and be accurate</i><br><br>
+# <i style='font-size:30pt;font-family:bitter;'>Understand your data and be accurate</i><br><br><br><br>
 
 ---
 class: center, middle
@@ -282,7 +282,7 @@ background-size: cover
 class: inverse, center, middle
 
 # <b style='font-size:100pt;color:#ebc500;font-family:bebas neue;'>Story</span></b><br>
-# <i style='font-size:30pt;font-family:bitter;'>Be clear about the story of your visualization</i><br><br>
+# <i style='font-size:30pt;font-family:bitter;'>Be clear about the message of your visualization</i><br><br><br><br>
 
 ---
 class: middle, center
@@ -312,10 +312,10 @@ class: inverse, middle, center
 
 .pull-left[
   <br><br>
-  <img src="img/2020_29_Astronauts_blur_color.png" style='width:100%;'>
+  <img src="img/2020_29_Astronauts_blur_color.png" style='width:100%;'><br><i style='font-size:12pt;'><a style='color:#ebc500;' href="https://raw.githubusercontent.com/Z3tt/TidyTuesday/master/plots/2020_29/2020_29_Astronauts_blur_color.png">#TidyTuesday contribution Week 2020/29</a></i>
 ]
 .pull-right[
-  <img src="img/2020_31_PalmerPenguins.png" style='width:74%;'>
+  <img src="img/2020_31_PalmerPenguins.png" style='width:70%;'><br><i style='font-size:12pt;'><a style='color:#ebc500;' href="https://raw.githubusercontent.com/Z3tt/TidyTuesday/master/plots/2020_31/2020_31_PalmerPenguins.png">#TidyTuesday contribution Week 2020/31</a></i>
 ]
 
 ---
@@ -339,7 +339,7 @@ class: inverse, middle, center
 ]
 
 .pull-right[
-  <img src="img/map_frontex_bars.png" style='width:99%;'>
+  <img src="img/map_frontex_best.png" style='width:100%;'>
 ]
   
 <i style='font-size:11pt;color:grey;'><a style='color:#ebc500;' href="https://thecorrespondent.com/664/how-maps-in-the-media-make-us-more-negative-about-migrants/738023272448-bac255ba">How maps in the media make us more negative about migrants</a> by Maite Vermeulen, Leon de Korte & Henk van Houtum</i>
@@ -352,8 +352,8 @@ class: inverse, middle, center
 ]
 
 .pull-right[
-  <img src="img/map_frontex_best.png" style='width:98%;'>
-]
+  <img src="img/map_frontex_bars.png" style='width:100%;'>
+] 
   
 <i style='font-size:11pt;color:grey;'><a style='color:#ebc500;' href="https://thecorrespondent.com/664/how-maps-in-the-media-make-us-more-negative-about-migrants/738023272448-bac255ba">How maps in the media make us more negative about migrants</a> by Maite Vermeulen, Leon de Korte & Henk van Houtum</i>
 
@@ -361,17 +361,17 @@ class: inverse, middle, center
 class: inverse, center, middle
 
 # <b style='font-size:100pt;color:#ebc500;font-family:bebas neue;'>Goal</span></b><br>
-# <i style='font-size:30pt;font-family:bitter;'>Select charts that successfully transport your story</i><br><br>
+# <i style='font-size:30pt;font-family:bitter;'>Select charts that successfully transport your story</i><br><br><br><br>
 
 ---
 class: center
 
 ## <b style='color:#28a87d;'>Data visualizations map values into quantifiable features <span style='color:#b3b3b3;'>(aesthetics)</span></b>
 
-
 <img src="img/aesthetics-hierarchy.jpg" style='width:29%;'><br><br><i style='font-size:11pt;color:grey;'><a href="https://paldhous.github.io/ucb/2019/dataviz/week2.html">Peter Aldhous</a> based on <a href="https://courses.ischool.berkeley.edu/i247/f05/readings/Cleveland_GraphicalPerception_Science85.pdf">experiments by William Cleveland and Robert McGill</a></i>
 
 ---
+class: center
 
 .pull-left[
   <img src="img/australian_bars.png" style='width:70%;'>
@@ -380,6 +380,7 @@ class: center
 .pull-right[]
 
 ---
+class: center
 
 .pull-left[
   <img src="img/australian_bars.png" style='width:70%;'>
@@ -390,11 +391,20 @@ class: center
   <img src="img/2020_02_AustralianFires.png" style='width:100%;'>
 ]
 
+<i style='font-size:12pt;'><a style='color:#ebc500;' href="https://raw.githubusercontent.com/Z3tt/TidyTuesday/master/plots/2020_02/2020_02_AustralianFires.png">#TidyTuesday contribution Week 2020/02</a></i>
+
 ---
+class: inverse, center, middle
 
-<ass: inverse, center, middle
+<br>
 
-<img src="img/2020_28_CoffeeRatings.png" style='width:8078'>
+.pull-left[
+  <img src="img/2020_25_AmericanSlavery.png" style='width:95%;'><br><i style='font-size:12pt;'><a style='color:#ebc500;' href="https://raw.githubusercontent.com/Z3tt/TidyTuesday/master/plots/2020_25/2020_25_AmericanSlavery.png">#TidyTuesday contribution Week 2020/25</a></i>
+]
+
+.pull-right[
+  <img src="img/2020_28_CoffeeRatings.png" style='width:100%;'><br><i style='font-size:12pt;'><a style='color:#ebc500;' href="https://raw.githubusercontent.com/Z3tt/TidyTuesday/master/plots/2020_28/2020_28_CoffeeRatings.png">#TidyTuesday contribution Week 2020/28</a></i>
+]
 
 ---
 background-image: url("img/chart-choice-helpers.png")
@@ -404,20 +414,13 @@ background-size: contain
 class: inverse, center, middle
 
 # <b style='font-size:100pt;color:#ebc500;font-family:bebas neue;'>Visual Form</span></b><br>
-# <i style='font-size:30pt;font-family:bitter;'>Follow design rules and data visualization principles</i><br><br>
+# <i style='font-size:30pt;font-family:bitter;'>Follow design rules and data visualization principles</i><br><br><br><br>
 
 ---
 class: center, middle
 
 # <b style='font-size:70pt;color:#28a87d;'>Colors</span></b><br>
 # <b style='font-size:40pt;'>and Common Pitfalls</b><br><br><br>
-
----
-class: center
-
-## Color Palette Types
-<br><br>
-<img src="img/color_scales_5.png" style='width:86%;'>
 
 ---
 class: center
@@ -433,7 +436,7 @@ class: center
 ## Color Choice & Accessibility
 
 <br><br>
-<img src="img/dw_cols_1.png"><br><i style='font-size:13pt;color:grey;'><br><a href="https://blog.datawrapper.de/colors/">What to consider when choosing colors for data visualization</a> by Lisa Charlotte Rost/DataWrapper</i>
+<img src="img/dw_cols_2.png"><br><i style='font-size:13pt;color:grey;'><br><a href="https://blog.datawrapper.de/colors/">What to consider when choosing colors for data visualization</a> by Lisa Charlotte Rost/DataWrapper</i>
 
 ---
 class: center
@@ -441,12 +444,7 @@ class: center
 ## Color Choice & Accessibility
 
 <br><br>
-<img src="img/dw_cols_2.png"><br><i style='font-size:13pt;color:grey;'><br><a href="https://blog.datawrapper.de/colors/">What to consider when choosing colors for data visualization</a> by Lisa Charlotte Rost/DataWrapper</i>
-
----
-class: center, middle
-
-<img src="img/rainbow_paper.png" style='width:100%;'>
+<img src="img/dw_cols_1.png"><br><i style='font-size:13pt;color:grey;'><br><a href="https://blog.datawrapper.de/colors/">What to consider when choosing colors for data visualization</a> by Lisa Charlotte Rost/DataWrapper</i>
 
 ---
 class: center, middle
@@ -467,11 +465,6 @@ class: center, middle
 class: center, middle
 
 <img src="img/Rainbow_Fabio_Crameri1.jpg" style='width:43%;'><br><i style='font-size:11pt;color:grey;'>Source: fabiocrameri.ch/batlow</i>
-
----
-class: center, middle
-
-<img src="img/Rainbow_Fabio_Crameri2.jpg" style='width:43%;'><br><i style='font-size:11pt;color:grey;'>Source: fabiocrameri.ch/batlow</i>
 
 ---
 class: center, middle
@@ -497,7 +490,6 @@ Create a CVD-version of your ggplot in R:<br><a href="https://github.com/clauswi
 To make sure your visualizations work for people<br>with CVD don’t just rely on provided color palettes.  
 Instead, test your figures in a color-blindness simulator!
 
-
 ---
 class: center
 
@@ -513,15 +505,11 @@ background-size: cover
 # <b style='font-size:52pt;color:#ebc500;'>Typography</span></b><br><br>&nbsp;
 
 ---
-background-image: url("img/fontsmatter.jpg")
-background-size: cover
-
----
 class: center
 
 ## The Choice of the <span style='color:#28a87d;'>Font(s)</span>
 
-<ul style='text-align:left;font-size:23pt;'>
+<ul style='text-align:left;font-size:23pt;color:#5d5d5d;'>
 <li> The font(s) should fit the topic and audience - <b>context matters</b>.</li><br>
 
 <li> <b>Avoid fancy</b> fonts and squiggeled letters.</li><br>
@@ -538,7 +526,7 @@ class: center
 
 ## The Choice of the <span style='color:#28a87d;'>Font(s)</span>
 
-<ul style='text-align:left;font-size:23pt;'>
+<ul style='text-align:left;font-size:23pt;color:#5d5d5d;'>
 <li> The font(s) should fit the topic and audience - <b>context matters</b>.</li><br>
 
 <li> <b>Avoid fancy</b> fonts and squiggeled letters.</li><br>
@@ -665,60 +653,68 @@ class: center
 ]
 
 ---
+class: center
 
 ## <span style='color:#28a87d;'>(Don't) Rotate</span> Your Text
 
 <br>
 .pull-left[
-  <p style='text-align:center;'><img src='img/bars_bad.png' style='width:95%;'></p>
+  <img src='img/bars_bad.png' style='width:95%;'>
 ]
 
 .pull-right[
-  <p style='text-align:center;'><img src='img/bars_good.png' style='width:99%;'></p>
+  <img src='img/bars_good.png' style='width:99%;'>
 ]
 
-<p style='text-align:center;'><i style='font-size:11pt;color:grey;'>Modified from  <a href="https://clauswilke.com/dataviz/">Fundamentals of Data Visualization</a> by Claus Wilke</i></p>
+<i style='font-size:11pt;color:grey;'>Modified from  <a href="https://clauswilke.com/dataviz/">Fundamentals of Data Visualization</a> by Claus Wilke</i>
 
 ---
+class: center
 
 ## <span style='color:#28a87d;'>(Don't) Rotate</span> Your Text
 
 <br>
 .pull-left[
-  <p style='text-align:center;'><img src='img/bars_bad.png' style='width:95%;'></p>
+  <img src='img/bars_bad.png' style='width:95%;'>
 ]
 
 .pull-right[
-  <p style='text-align:center;'><img src='img/bars_best.png' style='width:99%;'></p>
+  <img src='img/bars_best.png' style='width:99%;'>
 ]
 
-<p style='text-align:center;'>&nbsp;</p>
+&nbsp;
 
 ---
+class: center
 
 ## Use <span style='color:#28a87d;'>Annotations</span>
 
 <br>
 .pull-left[
-  <p style='text-align:center;'><img src='img/bars_best.png' style='width:100%;'></p>
+  <img src='img/bars_best.png' style='width:100%;'>
 ]
 
 .pull-right[
-  <p style='text-align:center;'><img src='img/bars_best_labs.png' style='width:100%;'></p>
+  <img src='img/bars_best_labs.png' style='width:100%;'>
 ]
 
+&nbsp;
+
 ---
+class: center
 
 ## Use <span style='color:#28a87d;'>Annotations</span>
 
 <br>
 .pull-left[
-  <p style='text-align:center;'><img src='img/bars_best.png' style='width:100%;'></p>
+  <img src='img/bars_best.png' style='width:100%;'>
 ]
 
 .pull-right[
-  <p style='text-align:center;'><img src='img/bars_best_labs_anno.png' style='width:100%;'></p>
+  <img src='img/bars_best_labs_anno.png' style='width:100%;'>
 ]
+
+&nbsp;
 
 ---
 class: inverse, center
@@ -743,3 +739,24 @@ class: inverse, center
 .pull-right[
 <p style='text-align:center;'><img src="img/blog-evol.png" style='width:63%;'></p>
 ]
+
+---
+class: inverse, center
+
+## Hands-On Coding
+
+<br>
+.pull-left[
+<p style='text-align:center;'><img src="img/original_jpm.png" style='width:100%;'></p>
+<b style='font-size:13pt;color:grey;'><a href="https://z3tt.github.io/bespokeDS/docs/workshop_jpm/workshop_jpm.html">Timeseries by JPMorgan Chase Institute</a></b>
+]
+
+.pull-right[
+<p style='text-align:center;'><img src="img/original_ddh.png" style='width:100%;'></p>
+<b style='font-size:13pt;color:grey;'><a href="https://z3tt.github.io/bespokeDS/docs/workshop_ddh/workshop_ddh.html">Gene Distribution by DataDrivenHypothesis</a></b>
+]
+
+---
+class: inverse, center, middle
+
+# <b style='color:#28a87d;'><a href="https://z3tt.github.io/bespokeDS">z3tt.github.io/bespokeDS</a></b>
