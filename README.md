@@ -4,7 +4,7 @@ Source Materials for the bespokeDS session on Sep 28<sup>th</sup> 2020 by Dr. CÃ
 
 ### **Presentation**
 
-[html](https://z3tt.github.io/bespokeDS/presentation.html) | [pdf](https://z3tt.github.io/bespokeDS/docs/presentation.pdf)
+[html](https://z3tt.github.io/bespokeDS/presentation.html) | [pdf](https://raw.githubusercontent.com/Z3tt/bespokeDS/master/docs/presentation.pdf)
 
 
 ### **Hands-On Coding**
