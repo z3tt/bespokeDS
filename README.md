@@ -1,6 +1,6 @@
 ## **Effective Data Visualization: How to design impactful and aesthetically pleasing charts**
 
-Source Materials for the bespokeDS session on Sep 20<sup>th</sup> 2020 by Dr. Cédric Scherer
+Source Materials for the bespokeDS session on Sep 28<sup>th</sup> 2020 by Dr. Cédric Scherer
 
 ### **Presentation**
 
