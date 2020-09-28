@@ -1,0 +1,306 @@
+---
+title: "Makeover DataDrivenHypothesis Distributions"
+author: "Cedric Scherer"
+date: "`r Sys.Date()`"    ## current date
+output:
+  rmdformats::readthedown:
+    highlight: kate
+    code_folding: show
+    toc_depth: 3
+    toc_float: true
+---
+
+<style>
+h1, h2, h3, h4, h5, h6, legend {
+  color:#28a87d;
+}
+#sidebar h2 {
+  background-color: #28a87d;
+}
+</style>
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, 
+                      fig.showtext = TRUE, retina = 1,
+                      fig.width = 9, fig.height = 6)
+```
+
+## Install Packages
+
+We are going to use a suite of packages. If those are not installed on your machine, please run the following code. `{ggplot2}` is part of the `{tidyverse}` package collection, tgther with other helpful packages for a data science workflow such as `{dplyr}`, `{tibble}`, `{tidyr}`, and `{readr}`.
+
+```{r packages, eval=F}
+#install.packages("ggplot2")
+install.packages("tidverse")
+install.packages("here")
+install.packages("forcats")
+install.packages("ggdist")
+install.packages("ggtext")
+```
+
+---
+
+## Import the Data
+
+We can improt the data with the `{readr}` package. One could alternatively use the base function `readRDS()`.
+
+```{r data}
+library(tidyverse)
+
+genes <- readr::read_rds(here::here("data", "data-ddh.Rds"))
+```
+
+---
+
+## Explore the Raw Data
+
+Let's have a look at the data set:
+
+```{r data-glimpse}
+tibble::glimpse(genes)
+```
+
+**Story:** Compare differences in dependency scores (`dep_score`) per gene (`gene_symbol`)
+**Goal:** Indicate similarity by overlapping distributions
+
+We sort the genes by their median dependency score by turning them into a factor:
+
+```{r data-modifications}
+genes <- genes %>% 
+  dplyr::mutate(gene_symbol = forcats::fct_reorder(gene_symbol, med))
+```
+
+We can easily inspect the raw data by plotting all dependency scores, grouped per gene. Since we already know that it is quite a big data set, we choose `geom_jitter()` instead of `geom_point()` and add some transparency. We can also quickly add the median visually by using `stat_summary()`:
+
+```{r plot-jitter}
+theme_set(theme_minimal())
+
+ggplot(data = genes, 
+       aes(x = dep_score, 
+           y = gene_symbol)) +
+  geom_jitter(alpha = .1) +
+  stat_summary(aes(x = dep_score),
+               fun = "median",
+               shape = 23,
+               fill = "white",
+               size = 1)
+```
+
+---
+
+## The Original Density Plot
+
+A usual way of comparing distributions is a density plot:
+
+```{r plot-density-fill}
+ggplot(data = genes, 
+       aes(x = dep_score, 
+           fill = gene_symbol)) +
+  geom_density(alpha = .5) +
+  ## change color palette and name
+  scale_fill_viridis_d(name = "Gene:", direction = -1) +
+  ## change spacing y axis
+  scale_y_continuous(expand = c(.01, .01)) +
+  ## add custom text labels
+  labs(x = "Dependency score", y = NULL) +
+  ## change legend properties and remove axis text
+  theme(axis.text.y = element_blank(),
+        panel.grid.minor = element_blank(),
+        panel.grid.major.y = element_blank(),
+        legend.title = element_text(face = "bold"),
+        legend.position = c(.1, .6))
+```
+
+There are some problems with an increasing number of genes: 
+* it becomes hard to see individual distributions when the number of overlapping genes is large and distributions are more similar
+* it becomes impossible to map the colors to each curve
+
+---
+
+## The Ridgeline Plot
+
+Ridgeline plots show distribution aligned to the same horizontal scale but with a vertical spacing, often presented with a slight overlap. The [`{ggridges}` package](https://cran.r-project.org/web/packages/ggridges/vignettes/introduction.html) is the tool of your choice with `{ggplot2}`:
+
+```{r plot-ridges}
+ggplot(data = genes, 
+       aes(x = dep_score, 
+           y = gene_symbol,
+           fill = gene_symbol,
+           color = after_scale(colorspace::lighten(fill, .3)))) +
+  ggridges::geom_density_ridges(alpha = .7) +
+  ## change color palette and name
+  scale_fill_viridis_d(guide = "none", direction = -1) +
+  ## add custom text labels
+  labs(x = "Dependency score", y = NULL)
+```
+
+```{r plot-ridges-mod}
+ggplot(data = genes, 
+       aes(x = dep_score, 
+           y = gene_symbol,
+           ## color by dependency score
+           fill = med, 
+           color = med)) +
+  ggridges::geom_density_ridges(alpha = .7) +
+  ## change color palette and name
+  scale_fill_viridis_c(guide = "none", direction = -1) +
+  scale_color_viridis_c(guide = "none", direction = -1) +
+  ## change spacing x axis
+  scale_x_continuous(expand = c(.01, .01)) +
+  ## change spacing y axis
+  scale_y_discrete(expand = c(.01, .01)) +
+  ## add custom text labels
+  labs(x = "Dependency score", y = NULL)
+```
+
+---
+
+## The Half-Eye Plot
+
+The `{ggdist}` package provides several very useful geoms. I am especially a fan of the halfeye plot that combines density curves with slab intervals showing the median and data range:
+
+```{r plot-halfeye}
+ggplot(data = genes, 
+       aes(x = dep_score, 
+           y = gene_symbol,
+           fill = med)) +
+  ggdist::stat_halfeye(alpha = .7) +
+  ## change color palette and name
+  scale_fill_viridis_c(guide = "none", direction = -1) +
+  ## add custom text labels
+  labs(x = "Dependency score", y = NULL)
+```
+
+To make it easier to map gene names to distirbutions, I add dotted liens to guide the reader (IMO nicer than gridlines but those would work as well).
+
+```{r plot-halfeye-lines}
+ggplot(data = genes, 
+       aes(x = dep_score, 
+           y = gene_symbol,
+           fill = gene_symbol)) +
+  geom_linerange(aes(xmin = -Inf, xmax = med),
+                 linetype = "dotted",
+                 size = .2) +
+  ggdist::stat_halfeye(alpha = .7) +
+  ## change color palette and name
+  scale_fill_viridis_d(guide = "none", direction = -1) +
+  ## add custom text labels
+  labs(x = "Dependency score", y = NULL)
+```
+
+The coloring per gene is not providing much additional information. It actually might even highlight some genes and hide some others. Instead, we can also color the distributions by threshold values. A dependency score above 1 or below -1 is of special interest so we use this as a threshold:
+
+```{r plot-halfeye-threshold}
+ggplot(data = genes, 
+       aes(x = dep_score, 
+           y = gene_symbol)) +
+  geom_linerange(aes(xmin = -Inf, xmax = med,
+                     color = abs(med) > 1),
+                 linetype = "dotted",
+                 size = .2) +
+  ggdist::stat_halfeye(
+    aes(fill = stat(abs(x) > 1),
+        point_fill = after_scale(colorspace::lighten(fill, .15))),
+    .width = c(.025, .975),
+    color = "black",
+    shape = 21,
+    stroke = .7
+  ) +
+  ## change color palette and name
+  scale_fill_manual(values = c("#b3b3b3", "#0fb78e"), guide = "none") +
+  scale_color_manual(values = c("#b3b3b3", "#0fb78e"), guide = "none") +
+  ## add custom text labels
+  labs(x = "Dependency score", y = NULL)
+```
+
+By adding a shadding to the "area of no interest" we can increase the highlight effect:
+
+```{r plot-halfeye-threshold-box}
+ggplot(data = genes, 
+       aes(x = dep_score, 
+           y = gene_symbol)) +
+  ## add a box to indicate thresholds
+  geom_rect(xmin = -1, xmax = 1, 
+            ymin = -Inf, ymax = Inf,
+            fill = "grey92") +
+  ## ad line to indicate zero scroes
+  geom_vline(xintercept = 0, color = "white", linetype = "dashed") +
+  geom_linerange(aes(xmin = -Inf, xmax = med,
+                     color = abs(med) > 1),
+                 linetype = "dotted",
+                 size = .2) +
+  ggdist::stat_halfeye(
+    aes(fill = stat(abs(x) > 1),
+        point_fill = after_scale(colorspace::lighten(fill, .15))),
+    .width = c(.025, .975),
+    color = "black",
+    shape = 21,
+    stroke = .7
+  ) +
+  ## change color palette and name
+  scale_fill_manual(values = c("#b3b3b3", "#0fb78e"), guide = "none") +
+  scale_color_manual(values = c("#b3b3b3", "#0fb78e"), guide = "none") +
+  ## add custom text labels
+  labs(x = "Dependency score", y = NULL) +
+  ## remove gridlines and add axis line
+  theme(panel.grid = element_blank(),
+        axis.line.x = element_line(color = "grey40"))
+```
+
+---
+
+## The Final Plot
+
+We can now change the default typeface and add a colored title to explain what the color represents and a caption:
+
+```{r plot-halfeye-final}
+## change default font and gridlines
+library(showtext)
+font_add_google("Monda", "Monda")
+theme_update(text = element_text(family = "Monda"))
+
+ggplot(data = genes, 
+       aes(x = dep_score, 
+           y = gene_symbol)) +
+  ## add a box to indicate thresholds
+  geom_rect(xmin = -1, xmax = 1, 
+            ymin = -Inf, ymax = Inf,
+            fill = "grey92") +
+  ## ad line to indicate zero scroes
+  geom_vline(xintercept = 0, color = "white", linetype = "dashed") +
+  geom_linerange(aes(xmin = -Inf, xmax = med,
+                     color = abs(med) > 1),
+                 linetype = "dotted",
+                 size = .2) +
+  ggdist::stat_halfeye(
+    aes(fill = stat(abs(x) > 1),
+        point_fill = after_scale(colorspace::lighten(fill, .15))),
+    .width = c(.025, .975),
+    color = "black",
+    shape = 21,
+    stroke = .7
+  ) +
+  ## change color palette and name
+  scale_fill_manual(values = c("#b3b3b3", "#0fb78e"), guide = "none") +
+  scale_color_manual(values = c("#b3b3b3", "#0fb78e"), guide = "none") +
+  ## add custom text labels
+  labs(x = "Dependency score", y = NULL,
+       title = "<b style='color:#0fb78e'>PSMA5</b> and <b style='color:#0fb78e'>MCM2</b> are interesting gene candidates with median dependency scores below -1",
+       caption = "Experience your “Heureka” moment on DataDrivenHypothesis.org!") +
+  ## remove gridlines, add axis line, adjust title, and add spacing
+  theme(panel.grid = element_blank(),
+        axis.line.x = element_line(color = "grey40"),
+        plot.title = ggtext::element_markdown(margin = margin(b = 10)),
+        plot.title.position = "plot",
+        plot.caption = element_text(color = "#0fb78e", margin = margin(t = 20)),
+        plot.margin = margin(rep(15, 4)))
+```
+
+<details><summary>Session Info</summary>
+
+```{r sessionInfo, echo = F}
+Sys.time()
+sessionInfo()
+```
+
+</details>
