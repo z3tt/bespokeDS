@@ -10,14 +10,10 @@ Source Materials for the bespokeDS session on Sep 20<sup>th</sup> 2020 by Dr. CÃ
 
 ## Hands-On Coding
 
-### Tutorial
+### Example Timeseries by JPMorgan Chase Institute
 
-[Example Timeseries](https://z3tt.github.io/bespokeDS_EffectiveDataViz/docs/workshop_jpm.html) |  [Example Distributions](https://z3tt.github.io/bespokeDS_EffectiveDataViz/docs/workshop_ddh.html)
+[Tutorial](https://z3tt.github.io/bespokeDS_EffectiveDataViz/docs/workshop_jpm.html) | [Workshop Files](https://github.com/Z3tt/bespokeDS_EffectiveDataViz/blob/master/docs/workshop_jpm.zip) | [Code](https://github.com/Z3tt/bespokeDS_EffectiveDataViz/blob/master/docs/workshop_jpm.Rmd)
 
-### Codes
+### Example Gene Distribution by DataDrivenHypothesis
 
-[Example Timeseries](https://github.com/Z3tt/bespokeDS_EffectiveDataViz/blob/master/R/workshop_jpm.Rmd) |  [Example Distributions](https://github.com/Z3tt/bespokeDS_EffectiveDataViz/blob/master/R/workshop_ddh.Rmd)
-
-### Data
-
-[Example Timeseries](https://github.com/Z3tt/bespokeDS_EffectiveDataViz/blob/master/data/data-jpm.Rds) |  [Example Distributions](https://github.com/Z3tt/bespokeDS_EffectiveDataViz/blob/master/data/data-ddh.Rds)
+[Tutorial](https://z3tt.github.io/bespokeDS_EffectiveDataViz/docs/workshop_ddh.html) | [Workshop Files](https://github.com/Z3tt/bespokeDS_EffectiveDataViz/blob/master/docs/workshop_ddh.zip) | [Code](https://github.com/Z3tt/bespokeDS_EffectiveDataViz/blob/master/docs/workshop_ddh.Rmd)
