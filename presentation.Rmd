@@ -628,7 +628,7 @@ class: center
 ## <span style='color:#28a87d;'>Tabular (Monospaced) Numbers</span>
 
 <br><br>
-<img src="img/medium_numbers.png" style='width:100%;'><br><i style='font-size:11pt;color:grey;'>Source: Tiffany France on Medium.com</i>
+<img src="img/medium_numbers.png" style='width:100%;'><br><i style='font-size:11pt;color:grey;'>So<br>urce: Ti<i style='font-size:13pt;color:grey;'><a href="https://medium.com/nightingale/choosing-a-font-for-your-data-visualization-2ed37afea637">Choosing Fonts for Your Data Visualization</a> by ffany France onviaedium.com</i>
 
 ---
 

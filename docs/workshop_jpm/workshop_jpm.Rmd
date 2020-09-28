@@ -67,7 +67,7 @@ tibble::glimpse(spendings)
 
 The original plot was created by the JPMorgan Chase Institute:
 
-![](../img/orig_line_jpmorgan.png)
+![](./img/orig_line_jpmorgan.png)
 
 We can create a similar plot with `{ggplot2}`:
 
