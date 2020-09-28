@@ -42,7 +42,7 @@ install.packages("ggtext")
 
 ## Import the Data
 
-We can improt the data with the `{readr}` package. One could alternatively use the base function `readRDS()`.
+We can import the data with the `{readr}` package. One could alternatively use the base function `readRDS()`.
 
 ```{r data}
 library(tidyverse)
