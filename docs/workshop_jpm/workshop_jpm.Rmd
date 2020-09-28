@@ -1,0 +1,223 @@
+---
+title: "Makeover JPMorgan Timeline"
+author: "Cedric Scherer"
+date: "`r Sys.Date()`"    ## current date
+output:
+  rmdformats::readthedown:
+    highlight: kate
+    code_folding: show
+    toc_depth: 3
+    toc_float: true
+---
+
+<style>
+h1, h2, h3, h4, h5, h6, legend {
+  color:#28a87d;
+}
+#sidebar h2 {
+  background-color: #28a87d;
+}
+</style>
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, 
+                      fig.showtext = TRUE, retina = 1,
+                      fig.width = 9, fig.height = 6)
+```
+
+## Install Packages
+
+We are going to use a suite of packages. If those are not installed on your machine, please run the following code. `{ggplot2}` is part of the `{tidyverse}` package collection, tgther with other helpful packages for a data science workflow such as `{dplyr}`, `{tibble}`, `{tidyr}`, and `{readr}`.
+
+```{r packages, eval=F}
+#install.packages("ggplot2")
+install.packages("tidverse")
+install.packages("here")
+install.packages("gghighlight")
+```
+
+---
+
+## Import the Data
+
+We can improt the data with the `{readr}` package. One could alternatively use the base function `readRDS()`.
+
+```{r data}
+library(tidyverse)
+
+spendings <- readr::read_rds(here::here("data", "data-jpm.Rds"))
+```
+
+---
+
+## Explore the Raw Data
+
+Let's have a look at the data set:
+
+```{r data-glimpse}
+tibble::glimpse(spendings)
+```
+
+**Story:** Compare shanges in year-to-year spendings (`change`) by essential categories (`category`)
+**Goal:** Show winners and losers of the COVID-19 epidemic
+
+---
+
+## The Original Plot
+
+The original plot was created by the JPMorgan Chase Institute:
+
+![](../img/orig_line_jpmorgan.png)
+
+We can create a similar plot with `{ggplot2}`:
+
+```{r plot-jitter}
+## change default theme
+theme_set(theme_minimal())
+
+theme_update(
+  panel.grid.minor = element_blank(),
+  axis.line.x = element_line(color = "black"),
+  axis.ticks.x = element_line(color = "black"),
+  plot.title = element_text(hjust = .5, margin = margin(b = 10)),
+  plot.title.position = "plot",
+  plot.caption.position = "plot",
+  plot.margin = margin(rep(15, 4))
+)
+
+g <- 
+  ggplot(data = spendings,
+         aes(x = id, y = change,
+             color = category)) +
+    ## add line national emergency
+    geom_vline(xintercept = 10.85, color = "grey40", linetype = "dashed") +
+    ## add baseline at zero
+    geom_hline(yintercept = 0, color = "grey30", size = .8) +
+    ## ad connected timeseries
+    geom_line(size = .8) +
+    geom_point(size = 1.6) +
+    ## add label national emergenecy
+    geom_text(
+      data = tibble(
+        date = 10.6,
+        change = 65,
+        label = "National emergency\ndeclared March 13"
+      ),
+      aes(x = date, y = change,
+          label = label),
+      inherit.aes = F,
+      size = 2.8,
+      lineheight = .95,
+      hjust = 1
+    ) +
+    ## avoid clipping of points close to the border
+    coord_cartesian(clip = "off") +
+    ## change default colors
+    rcartocolor::scale_color_carto_d(palette = "Prism") +
+    ## modify axes and plot appearance
+    scale_x_continuous(
+      expand = c(.003, .003),
+      breaks = seq(1, 15, by = 2),
+      labels = c("Jan 4", "Jan 18", "Feb 1", "Feb 15", "Feb 29", "Mar 14", "Mar 28", "Apr 11")
+    ) +
+    scale_y_continuous(
+      breaks = seq(-80, 60, by = 20),
+      labels = glue::glue("{seq(-80, 60, by = 20)}%")
+    ) +
+    labs(x = NULL, y = "End of week",
+         color = NULL, 
+         title = "Year-over-year percent change in spending by essential category",
+         caption = "Source: JPMorgan Chase Institute")
+
+g
+```
+
+---
+
+## Small Multiples
+
+One solution to resolve the overplotting-spaghetti-mess: small multiples, called `facets` in `{ggplot2}`:
+
+```{r plot-facet, fig.width = 15, fig.height = 10}
+g + 
+  facet_wrap(~ category) +
+  theme(legend.position = "none",
+        strip.text = element_text(size = 13, face = "bold"),
+        panel.spacing = unit(2, "lines"))
+```
+
+
+## Highlight Some Trends
+
+```{r plot-highlight}
+g +
+  gghighlight::gghighlight(
+    change[which(id == 15)] < -50,
+    use_direct_label = FALSE
+  ) +
+  scale_color_viridis_d(option = "inferno", end = .8)
+```
+
+## The Final Plot
+
+We can combine bothj approaches by plotting small multiples but adding the other categories in the background as grey lines. We also keep the "national Emergency" line but remove redundant labels.
+
+```{r plot-facet-highlight, fig.width = 15, fig.height = 10}
+gg <-
+  ggplot(spendings, aes(id, change, color = category)) +
+    geom_point() +
+    geom_line(size = .8, alpha = .5) +
+    gghighlight::gghighlight(
+      use_direct_label = F,
+      unhighlighted_params = list(color = "grey70", size = .5)
+    ) +
+    facet_wrap(~ category, ncol = 4, scales = "free_x") +
+    coord_cartesian(clip = "off") +
+    scale_x_continuous(
+      expand = c(.003, .003),
+      breaks = seq(1, 15, by = 2),
+      labels = c("Jan 4", "Jan 18", "Feb 1", "Feb 15", "Feb 29", "Mar 14", "Mar 28", "Apr 11")
+    ) +
+    scale_y_continuous(
+      breaks = seq(-80, 60, by = 20),
+      labels = glue::glue("{seq(-80, 60, by = 20)}%")
+    ) +
+    scale_color_viridis_d(option = "inferno", end = .8, begin = .1, guide = "none") +
+    labs(
+      x = "End of week", y = NULL,
+      title = "Year-over-year percent change in spending by essential category",
+      caption = "Source: JPMorgan Chase Institute | Makeover: Cedric Scherer, Frontpage Data"
+    )
+
+gg + 
+  geom_vline(xintercept = 10.85, color = "grey40", linetype = "dashed") +
+  geom_hline(yintercept = 0, color = "grey30", size = .8) +
+  geom_area(alpha = .1) +
+  geom_line(size = 1.2) +
+  geom_point(size = 1.8) +
+  geom_text(
+    data = tibble(
+      id = 10.6,
+      change = -60,
+      label = "National emergency\ndeclared March 13",
+      category = factor("Groceries", levels = levels(spendings$category)) 
+    ),
+    aes(label = label),
+    color = "grey40",
+    lineheight = .95,
+    hjust = 1
+  ) +
+  theme(panel.grid.major.x = element_blank(),
+        panel.spacing = unit(2, "lines"),
+        strip.text = element_text(size = 13, face = "bold"),
+        plot.title = element_text(size = 20, hjust = .5, margin = margin(b = 10)))
+```
+
+<details><summary>Session Info</summary>
+
+```{r sessionInfo, echo = F}
+Sys.time()
+sessionInfo()
+```
+
+</details>
