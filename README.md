@@ -2,7 +2,7 @@ This page features all source materials for the bespokeDS session "Effective Dat
 
 ### **Presentation**
 
-[Recording](https://www.youtube.com/watch?v=swzFdMc6WPk) | [html](https://z3tt.github.io/bespokeDS/presentation.html) | [pdf](https://raw.githubusercontent.com/Z3tt/bespokeDS/master/docs/presentation.pdf)
+[Recording](https://www.youtube.com/watch?v=swzFdMc6WPk) | [Slides (html)](https://z3tt.github.io/bespokeDS/presentation.html) | [Slides (pdf)](https://raw.githubusercontent.com/Z3tt/bespokeDS/master/docs/presentation.pdf)
 
 
 ### **Hands-On Coding**
