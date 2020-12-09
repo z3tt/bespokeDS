@@ -160,7 +160,7 @@ g +
 
 ## The Final Plot
 
-We can combine bothj approaches by plotting small multiples but adding the other categories in the background as grey lines. We also keep the "national Emergency" line but remove redundant labels.
+We can combine both approaches by plotting small multiples but adding the other categories in the background as grey lines. We also keep the "national Emergency" line but remove redundant labels.
 
 ```{r plot-facet-highlight, fig.width = 15, fig.height = 10}
 gg <-
