@@ -58,7 +58,7 @@ Let's have a look at the data set:
 tibble::glimpse(spendings)
 ```
 
-**Story:** Compare shanges in year-to-year spendings (`change`) by essential categories (`category`)
+**Story:** Compare changes in year-to-year spendings (`change`) by essential categories (`category`)  
 **Goal:** Show winners and losers of the COVID-19 epidemic
 
 ---
