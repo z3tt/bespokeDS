@@ -15,7 +15,7 @@ This page features all source materials for the bespokeDS session "Effective Dat
 
 [Tutorial](https://z3tt.github.io/bespokeDS/docs/workshop_ddh/workshop_ddh.html) | [Workshop Files](https://github.com/Z3tt/bespokeDS/raw/master/docs/workshop_ddh.zip) | [Code](https://github.com/Z3tt/bespokeDS/blob/master/docs/workshop_ddh/workshop_ddh.Rmd)
 
-#### Resources
+### **Resources**
 
 **Open-Access DataViz Books**
 
